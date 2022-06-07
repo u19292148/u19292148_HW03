@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Video";
+}
+
+@using Homework3_u19292148.Models
+@model List<FileModel>
+
+
+
+<h2>Video</h2>
+
+<head>
+
+</head>
+<div class="well-sm">
+    <h2>File Download / Delete</h2>
+    <p>
+        This is for DOWNLOADING files from the "Media/Video/" folder
+    </p>
+</div>
+
+
+<div class="container" style="background: #cccccc;">
+    <div class="row">
+        @foreach (FileModel file in Model)
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6" style="width:30rem;">
+                <br />
+                <a class="fancybox" href="~/Media/Video/@file.FileName"><video class="video" src="~/Media/Video/@file.FileName" style="width:20rem; height:20rem;" id="video"></video></a>
+    
+                @file.FileName
+                <br />
+                <button id="DWbut" class="btn btn-success" style="color:white">
+                    @Html.ActionLink("DOWNLOAD", "DownloadFile",
+                     new { fileName = file.FileName })
+                </button>
+                <button id="Dbut" class="btn btn-danger" style="color:white">
+                    @Html.ActionLink("DELETE", "DeleteFile",
+                   new { fileName = file.FileName },
+                   new { onclick = "return confirm('Are you sure you wish to delete this?');" })
+                </button>
+            </div>
+           
+        }
+     </div>
+</div>
